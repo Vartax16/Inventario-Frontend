@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Productos</title>
+    <!-- JQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/icons/icon.jpg" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Datatable -->
+    <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
+    <!-- bootstrap4 Datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav"
+        style="background-image: url(/icons/nav/nav.jpg);">
+        <div class="container">
+            <a href="/index.html"><img src="/icons/icon.jpg" id="navImageLogo"></a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <a href="/view/usuarios.html"><img src="/icons/nav/usuarios.jpg" class="navImage"></a>
+                        <a href="/view/productos.html"><img src="/icons/nav/productos.jpg" class="navImage"></a>
+                        <a href="/view/categorias.html"><img src="/icons/nav/caterogias.jpg" class="navImage"></a>
+                        <a href="/view/proveedores.html"><img src="/icons/nav/proveedores.jpg" class="navImage"></a>
+                        <a href="/view/clientes.html"><img src="/icons/nav/clientes.jpg" class="navImage"></a>
+                        <a href="/view/ventas.html"><img src="/icons/nav/ventas.jpg" class="navImage"></a>
+                        <a href="/view/compras.html"><img src="/icons/nav/compras.jpg" class="navImage"></a>
+                        <a href="/view/reportes.html"><img src="/icons/nav/reportes.jpg" class="navImage"></a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Section-->
+    <section class="page-section" style="margin-top: 5%;">
+        <div class="container">
+
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h4>Administrar Productos</h4>
+                        <button type="button" class="button" onclick="add()">Agregar
+                            Producto</button>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+
+        <div class="container">
+            <!-- Tabla de Empleados -->
+            <div class="col-lg-12">
+                <table id="table" class="table table-striped " style="width: 100%;border-radius: 100px;">
+                    <thead>
+                        <tr style="border-radius: 10px;">
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Proveedor</th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col ">Categoría</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Precio de Venta</th>
+                            <th scope="col">Precio de Compra</th>
+                            <th scope="col">Agregado</th>
+                            <th scope="col" style="height: 10%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="modal fade-example-modal-xl " id="myModal" tabindex="-1" aria-labelledby="myModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #F2AA1F;">
+                        <h4> Agregar Producto </h4>
+                        <a type="button" class="close" data-dismiss="modal" style="color: black;">
+                            <h4><span>&times;</span></h4>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <!-- row -->
+                        <div class="container">
+
+                            <div class="col-xl-12 col-xxl-12 col-lg-6">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label>Proveedor</label>
+                                                    <select class="form-control" id="Proveedor">
+                                                        <option value=""> Seleccione un Proveedor
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col">
+                                                    <label>Categoría</label>
+                                                    <select class="form-control" id="Categoria">
+                                                        <option value=""> Seleccione una Categoría
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div><br>
+
+                                            <div class="row">
+
+                                                <div class="col">
+                                                    <label>Código</label>
+                                                    <input type="number" class="form-control" id="Codigo" required
+                                                        value="">
+                                                </div><br>
+
+                                                <div class="col">
+                                                    <label>Precio de Compra</label>
+                                                    <input type="number" class="form-control" id="PrecioCompra" required
+                                                        value="">
+                                                </div>
+                                            </div><br>
+
+                                            <div class="row">
+
+                                                <div class="col">
+                                                    <label>Descripción</label>
+                                                    <input type="text" class="form-control" id="Descripcion" required
+                                                        value="">
+                                                </div><br>
+
+                                                <div class="col">
+                                                    <label>Precio de Venta</label>
+                                                    <input type="number" class="form-control" id="PrecioVenta" required
+                                                        value="">
+                                                </div>
+                                            </div>
+                                        </form><br>
+
+                                        <div class="row">
+                                            <div s>
+                                                <div class="image-upload">
+                                                    <label for="file-input">
+                                                        <img src="/icons/nav/foto.jpg" style="width: 80%;"
+                                                            id="output" />
+                                                    </label>
+                                                    <input type="file" class="form-control" accept="image/*"
+                                                        onchange="loadFile(event)" id="file-input" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right pt-6">
+                                            <button type="submit" class="button" onclick="addProduct()" aling="right"
+                                                style="margin-left: 60%;">Agregar Producto</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- Bootstrap core JS-->
+    <script src="/vendor/global/global.min.js"></script>
+    <script src="/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/deznav-init.js"></script>
+
+    <!-- Svganimation scripts -->
+    <script src="/vendor/svganimation/vivus.min.js"></script>
+    <script src="/vendor/svganimation/svg.animation.js"></script>
+
+    <script src="/js/general.js"></script>
+    <script src="/js/productos.js"></script>
+</body>
+
+</html>

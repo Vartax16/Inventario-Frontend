@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RR.HH - Generador de Vacaciones </title>
+  <!-- JQuery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Favicon icon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+  <!-- Custom Stylesheet -->
+  <link href="./vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+  <link href="./css/style.css" rel="stylesheet">
+  <!-- jsPDF library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <!-- SweetAlert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- Datatable -->
+  <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
+  <!-- bootstrap4 Datatable -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+  <!-- Axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+
+<body>
+
+  <div id="preloader">
+    <div class="sk-three-bounce">
+      <div class="sk-child sk-bounce1"></div>
+      <div class="sk-child sk-bounce2"></div>
+      <div class="sk-child sk-bounce3"></div>
+    </div>
+  </div>
+
+  <div id="main-wrapper">
+
+    <!-- Imagen Home -->
+    <div class="nav-header">
+      <a href="index.html" class="brand-logo">
+        <img src="./images/logo4.png" width="260px">
+
+      </a>
+    </div>
+
+    <!-- Encabezado -->
+    <div class="header">
+      <div class="header-content">
+        <nav class="navbar navbar-expand">
+          <div class="collapse navbar-collapse justify-content-between">
+            <div class="header-left">
+              <div class="welcome-text">
+                <h3 class="mt-4 text-white"
+                  style="font-family: 'Brush Script MT', cursive; font-size: 50px; padding: auto;">Dirección de Recursos
+                  Humanos</h3>
+              </div>
+
+
+              <ul class="navbar-nav header-right">
+                <li class="nav-item dropdown notification_dropdown">
+                  <a class="nav-link bell ai-icon" href="#" role="button" data-toggle="dropdown">
+                  </a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Menú -->
+    <div class="deznav">
+      <div class="deznav-scroll mm-active ps">
+        <ul class="metismenu mm-show" id="menu">
+          <li class="nav-label first">Recursos Humanos</li>
+          <li>
+            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+              <svg id="icon-forms" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-file-text">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  style="stroke-dasharray: 66, 86; stroke-dashoffset: 0;"></path>
+                <path d="M14,2L14,8L20,8" style="stroke-dasharray: 12, 32; stroke-dashoffset: 0;">
+                </path>
+                <path d="M16,13L8,13" style="stroke-dasharray: 8, 28; stroke-dashoffset: 0;"></path>
+                <path d="M16,17L8,17" style="stroke-dasharray: 8, 28; stroke-dashoffset: 0;"></path>
+                <path d="M10,9L9,9L8,9" style="stroke-dasharray: 2, 22; stroke-dashoffset: 0;"></path>
+              </svg>
+              <span class="nav-text">Generadores</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./certificado.html">Certificados</a></li>
+              <li><a>Vacaciones</a></li>
+              <ul aria-expanded="false">
+                <li><a href="./accion.html">Vacaciones</a></li>
+                <li><a href="./accionInte.html">Vacaciones Interrumpidas</a></li>
+
+              </ul>
+              <li><a href="./monitoreo.html">Monitoreo</a></li>
+
+            </ul>
+          </li>
+          <li>
+            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+              <svg id="icon-apps" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-users">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span class="nav-text">Solicitud de Empleo</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./crearSolicitud.html"> Crear </a></li>
+              <li><a href="./listaSolicitud.html">Listar</a></li>
+              <li><a href="./monitoreoSolicitud.html">Monitoreo</a></li>
+
+            </ul>
+          </li>
+
+          <li>
+            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+              <svg id="icon-apps" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-users">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span class="nav-text">Empleados</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./crearEmpleado.html"> Crear </a></li>
+              <li><a href="./listaEmpleado.html">Listar</a></li>
+              <li><a href="./monitoreoEmpleado.html">Monitoreo</a></li>
+              <li><a href="./reporteGeneral.html"> Reporte General </a></li>
+            </ul>
+          </li>
+
+          <li class="nav-label first">Dirección Técnica</li>
+          <li>
+            <a class="has-arrow ai-icon" href="ljavascript:void()" aria-expanded="false">
+              <svg id="icon-forms" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-file-text">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  style="stroke-dasharray: 66, 86; stroke-dashoffset: 0;"></path>
+                <path d="M14,2L14,8L20,8" style="stroke-dasharray: 12, 32; stroke-dashoffset: 0;">
+                </path>
+                <path d="M16,13L8,13" style="stroke-dasharray: 8, 28; stroke-dashoffset: 0;"></path>
+                <path d="M16,17L8,17" style="stroke-dasharray: 8, 28; stroke-dashoffset: 0;"></path>
+                <path d="M10,9L9,9L8,9" style="stroke-dasharray: 2, 22; stroke-dashoffset: 0;"></path>
+              </svg>
+              <span class="nav-text">Informe</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./DTcrear.html">Crear</a></li>
+              <li><a href="./DTmonitoreo.html">Monitoreo</a></li>
+              <li><a href="./DTrango.html">Rango por Fecha</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-label first">Recuperación</li>
+          <li>
+            <a class="has-arrow ai-icon" href="ljavascript:void()" aria-expanded="false">
+              <svg id="icon-forms" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-file-text">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  style="stroke-dasharray: 66, 86; stroke-dashoffset: 0;"></path>
+                <path d="M14,2L14,8L20,8" style="stroke-dasharray: 12, 32; stroke-dashoffset: 0;">
+                </path>
+                <path d="M16,13L8,13" style="stroke-dasharray: 8, 28; stroke-dashoffset: 0;"></path>
+                <path d="M16,17L8,17" style="stroke-dasharray: 8, 28; stroke-dashoffset: 0;"></path>
+                <path d="M10,9L9,9L8,9" style="stroke-dasharray: 2, 22; stroke-dashoffset: 0;"></path>
+              </svg>
+              <span class="nav-text">General</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./lugar.html">Crear</a></li>
+              <li><a href="./lista.html">Lista</a></li>
+              <li><a href="./listaPdf.html">Reporte PDF</a></li>
+              <li><a href="./graficos.html">Graficas</a></li>
+              <li><a href="./monitoreoRec.html">Monitoreo</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-label first">Tecnología</li>
+          <li>
+            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+              <svg id="icon-apps" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-users">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span class="nav-text">Usuarios</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./usuarios.html">Crear Usuarios</a></li>
+              <li><a href="./monitoreoUsuarios.html">Monitoreo Usuarios</a></li>
+
+            </ul>
+          </li>
+
+          <li class="nav-label first">Subasta</li>
+          <li><a class="ai-icon" href="./presentacion.html" aria-expanded="false">
+              <svg id="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-home">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span class="nav-text">Presentación</span>
+            </a>
+          </li>
+          <li><a class="ai-icon" href="./Asistencia.html" aria-expanded="false">
+              <svg id="icon-heart" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-heart">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                </path>
+              </svg>
+              <span class="nav-text">Asistencia</span>
+            </a>
+          </li>
+          <li><a class="ai-icon" href="./agregar participante.html" aria-expanded="false">
+              <svg id="icon-database" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-database">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+              <span class="nav-text">Inscripciones</span>
+            </a>
+          </li>
+          <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+              <svg id="icon-user-doctors" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-user">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span class="nav-text">Oferentes</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./participanteslista.html">Lista</a></li>
+              <li><a href="./agregar participante.html">Agregar</a></li>
+              <li><a href="./participanterematado.html">Remates</a></li>
+            </ul>
+          </li>
+          <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+              <svg id="icon-users" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-users">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span class="nav-text">Lotes</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./loteslista.html">Lista</a></li>
+              <li><a href="./agregar producto.html">Agregar</a></li>
+              <li><a href="./loterematado.html">Rematados</a></li>
+              <li><a href="./rematesedicion.html">Editar Remates</a></li>
+
+            </ul>
+          </li>
+          <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+              <svg id="icon-file-text" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-file-text">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span class="nav-text">Subastas</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./agregar subasta.html">Agregar</a></li>
+              <li><a href="./listaSubasta.html">Lista</a></li>
+            </ul>
+          </li>
+          <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+              <svg id="icon-dollar-sign" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-dollar-sign">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+              <span class="nav-text">Recaudacion</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a href="./recaudacion.html">Calculos Subasta</a></li>
+            </ul>
+          </li>
+
+          <li class="mega-menu mega-menu-xl" style="background-color: #ed1d24;"><a class="has-arrow ai-icon"
+              onclick="cerrarSesion()" aria-expanded="false">
+              <svg id="icon-plugins" viewBox="0 0 24 24" width="64" height="64" stroke="currentColor" stroke-width="2"
+                fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                <path width="16" height="16" d="M4 4 L20 4 L20 20 L4 20 Z"
+                  style="stroke-dasharray: 64, 84; stroke-dashoffset: 0;"></path>
+                <path width="6" height="6" d="M9 9 L15 9 L15 15 L9 15 Z"
+                  style="stroke-dasharray: 24, 44; stroke-dashoffset: 0;"></path>
+                <path d="M9,1L9,4" style="stroke-dasharray: 3, 23; stroke-dashoffset: 0;"></path>
+                <path d="M15,1L15,4" style="stroke-dasharray: 3, 23; stroke-dashoffset: 0;"></path>
+                <path d="M9,20L9,23" style="stroke-dasharray: 3, 23; stroke-dashoffset: 0;"></path>
+                <path d="M15,20L15,23" style="stroke-dasharray: 3, 23; stroke-dashoffset: 0;"></path>
+                <path d="M20,9L23,9" style="stroke-dasharray: 3, 23; stroke-dashoffset: 0;"></path>
+                <path d="M20,14L23,14" style="stroke-dasharray: 3, 23; stroke-dashoffset: 0;"></path>
+                <path d="M1,9L4,9" style="stroke-dasharray: 3, 23; stroke-dashoffset: 0;"></path>
+                <path d="M1,14L4,14" style="stroke-dasharray: 3, 23; stroke-dashoffset: 0;"></path>
+              </svg>
+              <span class="nav-text">Salir</span>
+            </a>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contenido de Body -->
+    <div class="content-body">
+      <div class="container-fluid">
+
+        <!-- Titulo de la Pagina -->
+        <div class="row page-titles mx-0">
+          <div class="col-sm-6 p-md-0">
+            <div class="welcome-text">
+              <h4>Generador de Documentación Vacaciones</h4>
+              <span class="ml-1">Bienes Nacionales</span>
+            </div>
+          </div>
+          <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+            <ol class="breadcrumb">
+            </ol>
+          </div>
+        </div>
+
+        <!-- Tabla de Empleados -->
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Lista de Empleados</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="table" class="table table-striped table-bordered" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <th scope="col">Acciones</th>
+                      <th scope="col" style="width: 12%;">Cedula</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col " style="width: 25%;">Cargo</th>
+                      <th scope="col">Departamento</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Vacaciones -->
+        <div class="bootstrap-modal">
+          <div class="modal fade bd-example-modal-xl" id="vacac" tabindex="-1" aria-labelledby="myExtraLargeModalLabel">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+
+                <!-- Encabezado -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                  </button>
+                </div>
+
+                <!-- Contenido del Modal -->
+                <div class="modal-body">
+                  <div style="background-color: #E1E1E2;">
+                    <div class="container-fluid">
+                      <div class="row page-titles mx-0">
+
+                        <!-- Titulo -->
+                        <div class="col-sm-6 p-md-0">
+                          <div class="welcome-text">
+                            <h4>Vacaciones </h4>
+                            <span class="ml-1">Bienes Nacionales</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-xl-12 col-xxl-12 col-lg-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="basic-form">
+
+                                <!-- Formulario de Vacaciones -->
+                                <form>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label>Superior Inmediato :</label>
+                                      <input type="text" class="form-control" id="Superior" required
+                                        placeholder="Ingrese el Superior Inmediato">
+                                    </div><br>
+
+                                    <div class="form-group col-md-4">
+                                      <label>Período :</label>
+                                      <input type="text" class="form-control" id="Periodo" required
+                                        placeholder="Ingrese el Periodo">
+                                    </div><br>
+
+                                    <div class="form-group col-md-4">
+                                      <label>Días Pendientes :</label>
+                                      <input type="number" class="form-control" id="DiasPendientes" required
+                                        placeholder="Ingrese los Días Pendientes">
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Inicio Vacaciones:</label>
+                                      <input type="date" class="form-control" id="Inicio" required>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Días Aprobados :</label>
+                                      <input type="number" class="form-control" id="DiasVacaciones" required
+                                        placeholder="Ingrese los Días Aprobados">
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label hidden>Finalización Vacaciones:</label>
+                                      <input type="date" class="form-control" id="Finalizacion" required readonly
+                                        hidden>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label hidden>Reintegrarse:</label>
+                                      <input type="date" class="form-control" id="Reintegrarse" required readonly
+                                        hidden>
+                                    </div><br>
+
+                                  </div>
+                                </form>
+
+                                <!-- Boton de Guardar -->
+                                <div class="text-right pt-3">
+                                  <button type="submit" class="btn btn-primary mb-2" aling="rigth"
+                                    onclick="gu()">Guardar
+                                    Cambios</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer Modal -->
+                <div class="modal-footer">
+                  <p>Copyright ©Bienes Nacionales 2021 - E. Bautista</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Preview de Vacaciones -->
+        <div class="bootstrap-modal">
+          <div class="modal fade bd-example-modal-xl" id="preview1" tabindex="-1"
+            aria-labelledby="myExtraLargeModalLabel">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+
+                <!-- Encabezado -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                  </button>
+                </div>
+
+                <!-- COntenido -->
+                <div class="modal-body">
+                  <div style="background-color: #E1E1E2;">
+                    <div class="container-fluid">
+                      <div class="row page-titles mx-0">
+
+                        <!-- Titulo -->
+                        <div class="col-sm-6 p-md-0">
+                          <div class="welcome-text">
+                            <h4> Vista General de Vacaciones </h4>
+                            <span class="ml-1">Bienes Nacionales</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+
+                        <div class="col-xl-12 col-xxl-12 col-lg-6">
+                          <div class="card">
+
+                            <div class="card-body">
+                              <div class="basic-form">
+
+                                <!-- Formulario Readonly -->
+                                <form>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label>Superior Inmediato :</label>
+                                      <input type="text" class="form-control" id="Superior1" required readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-4">
+                                      <label>Período :</label>
+                                      <input type="text" class="form-control" id="Periodo1" required readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-4">
+                                      <label>Días Pendientes :</label>
+                                      <input type="number" class="form-control" id="DiasPendientes1" required readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Inicio Vacaciones:</label>
+                                      <input type="date" class="form-control" id="Inicio1" required readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Días Aprobado :</label>
+                                      <input type="number" class="form-control" id="DiasVacaciones1" required readonly>
+                                    </div><br>
+
+
+                                    <div class="form-group col-md-6">
+                                      <label>Finalización Vacaciones:</label>
+                                      <input type="date" class="form-control" id="Finalizacion1" required readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Reintegrarse:</label>
+                                      <input type="date" class="form-control" id="Reintegrarse1" required readonly>
+                                    </div><br>
+                                  </div>
+                                </form>
+
+                                <!-- BotonES -->
+                                <div class="text-right pt-3">
+                                  <button type="submit" class="btn btn-danger" aling="left"
+                                    onclick="gu()">Atras</button>
+
+                                  <button type="submit" class="btn btn-primary mb-2" aling="rigth"
+                                    onclick="preview()">Guardar
+                                    Cambios</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer">
+                  <p>Copyright ©Bienes Nacionales 2021 - E. Bautista</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modal Historial -->
+        <div class="bootstrap-modal">
+          <div class="modal fade bd-example-modal-xl" id="historialVacaciones" tabindex="-1"
+            aria-labelledby="myExtraLargeModalLabel">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+
+                <!-- Encabezado -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                  </button>
+                </div>
+
+                <!-- Contenido -->
+                <div class="modal-body">
+                  <div style="background-color: #E1E1E2;">
+                    <div class="container-fluid">
+
+                      <!-- Titulo -->
+                      <div class="row page-titles mx-0">
+                        <div class="col-sm-6 p-md-0">
+                          <div class="welcome-text">
+                            <h4> Historial de Vacaciones</h4>
+                            <span class="ml-1">Bienes Nacionales</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Tabla de Historial -->
+                      <div class="col-lg-12">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table id="tableHistorial" class="table table-striped table-bordered"
+                                style="width: 100%;">
+                                <thead>
+                                  <tr>
+                                    </th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col " style="width: 25%;">Superior</th>
+                                    <th scope="col">Periodo</th>
+                                    <th scope="col">Inicio</th>
+                                    <th scope="col">Finalización</th>
+                                    <th scope="col">Reintegrarse</th>
+                                    <th scope="col">Días Vacaciones</th>
+                                    <th scope="col">Días Pendientes</th>
+                                    <th scope="col">Nombre Usuario</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Fecha</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer del Modal -->
+                <div class="modal-footer">
+                  <p>Copyright ©Bienes Nacionales 2021 - E. Bautista</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Detalles Empleado -->
+        <div class="bootstrap-modal">
+          <div class="modal fade bd-example-modal-xl" id="detailsEmpleado" tabindex="-1"
+            aria-labelledby="myExtraLargeModalLabel">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+
+                <!-- Encabezado -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                  </button>
+                </div>
+
+                <!-- Contenido -->
+                <div class="modal-body">
+                  <div style="background-color: #E1E1E2;">
+                    <div class="container-fluid">
+                      <div class="row page-titles mx-0">
+
+                        <!-- Titulo -->
+                        <div class="col-sm-6 p-md-0">
+                          <div class="welcome-text">
+                            <h4> Detalles del Empleado </h4>
+                            <span class="ml-1">Bienes Nacionales</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-row">
+
+                        <div class="col-xl-12 col-xxl-12 col-lg-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="basic-form">
+
+                                <!-- Formulario -->
+                                <form>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label>Foto
+                                        del
+                                        Empleado</label><br>
+                                      <img id="imgEMpleado" width="250px" height="200px">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Cedula</label>
+                                      <input type="text" class="form-control" id="cedulaEmpleado" required value=""
+                                        readonly><br>
+
+                                      <label>Tipo
+                                        Empleado</label>
+                                      <input type="text" class="form-control" id="TipoEmpleadoDt" required value=""
+                                        readonly><br>
+
+                                      <label>Tipo
+                                        Nomina</label>
+                                      <input type="text" class="form-control" id="TipoNominaDt" required value=""
+                                        readonly><br>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Fecha
+                                        Ingreso:</label>
+                                      <input type="text" class="form-control" id="fechaIngresoEmpleado" required
+                                        value="" readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Fecha
+                                        Salida:</label>
+                                      <input type="text" class="form-control" id="fechaSalidaEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Nombre
+                                        del
+                                        Empleado</label>
+                                      <input type="text" class="form-control" id="nombreEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Fecha
+                                        Nacimiento</label>
+                                      <input type="text" class="form-control" id="FechaNacimientoEmpleado" required
+                                        value="" readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Otras
+                                        Instituciones:</label>
+                                      <textarea type="text" class="form-control" id="OtrasInstitucionesEmpleado"
+                                        required value="" readonly> </textarea>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Tiempo
+                                        Estado:</label>
+                                      <input type="text" class="form-control" id="TiempoEstadoEmpleado" required
+                                        value="" readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Ciudad:</label>
+                                      <input type="text" class="form-control" id="CiudadEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Dirección:</label>
+                                      <textarea type="text" class="form-control" id="DireccionEmpleado" required
+                                        value="" readonly></textarea>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Teléfono
+                                        Residencia:</label>
+                                      <input type="text" class="form-control" id="TelResidenciaEmpleado" required
+                                        value="" readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Teléfono
+                                        Celular:</label>
+                                      <input type="text" class="form-control" id="TelCelularEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Correo
+                                        Electronico:</label>
+                                      <input type="text" class="form-control" id="CorreoElectronicoEmpleado" required
+                                        value="" readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Estado
+                                        Civil:</label>
+                                      <input type="text" class="form-control" id="EstadoCivilEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Hijos:</label>
+                                      <input type="text" class="form-control" id="HijosEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Cargo:</label>
+                                      <input type="text" class="form-control" id="cargoEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Cargo
+                                        Actual:</label>
+                                      <input type="text" class="form-control" id="cargoActualEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Salario:</label>
+                                      <input type="text" class="form-control" id="salarioEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Departamento:</label>
+                                      <input type="text" class="form-control" id="departamentoEmpleado" required
+                                        value="" readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>AFP:</label>
+                                      <input type="text" class="form-control" id="AFPEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>ARS:</label>
+                                      <input type="text" class="form-control" id="ARSEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Tipo
+                                        Sangre:</label>
+                                      <input type="text" class="form-control" id="TipoSangreEmpleado" required value=""
+                                        readonly>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Condicion
+                                        Salud:</label>
+                                      <textarea type="text" class="form-control" id="CondicionSaludEmpleado" required
+                                        value="" readonly> </textarea>
+                                    </div><br>
+
+                                    <div class="form-group col-md-6">
+                                      <label>Observaciones:</label>
+                                      <textarea type="text" class="form-control" id="ObservacionesEmpleado" required
+                                        value="" readonly> </textarea>
+                                    </div><br>
+
+
+
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <p>Copyright ©Bienes Nacionales 2021 - E. Bautista</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Periodo -->
+        <div class="bootstrap-modal">
+          <div class="modal fade bd-example-modal-xl" id="period" tabindex="-1"
+            aria-labelledby="myExtraLargeModalLabel">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+
+                <!-- Encabezado -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div style="background-color: #E1E1E2;">
+
+                    <!-- Contenido -->
+                    <div class="container-fluid">
+
+                      <div class="row page-titles mx-0">
+                        <div class="col-sm-6 p-md-0">
+                          <div class="welcome-text">
+                            <h4>Período de Vacaciones </h4>
+                            <span class="ml-1">Bienes Nacionales</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+
+                        <div class="col-xl-12 col-xxl-12 col-lg-6">
+                          <div class="card">
+
+                            <div class="card-body">
+                              <div class="basic-form">
+
+                                <!-- Formulario de Ingreso -->
+                                <form>
+                                  <div class="form-row">
+
+                                    <div class="form-group col-md-6">
+                                      <label>Ingrese el Periodo:</label>
+                                      <input type="text" class="form-control" id="PeriodoAlert">
+                                    </div><br>
+
+                                  </div>
+                                </form>
+
+                                <!-- Boton de Generar -->
+                                <div class="text-right pt-3">
+                                  <button type="submit" class="btn btn-primary mb-2" aling="rigth"
+                                    onclick="generar()">Continuar</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer">
+                  <p>Copyright ©Bienes Nacionales 2021 - E. Bautista</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer de la Pagina -->
+        <div class="footer">
+          <div class="copyright">
+            <p>Copyright ©Bienes Nacionales 2021 - E. Bautista</p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    
+    <!-- Required vendors -->
+    <script src="./program/general/url.js"></script>
+    <script src="./program/general/cerrarSesion.js"></script>
+    <script src="./program/security/SaccionCert.js"></script>
+    <script src="./program/RRHH/generadores/accion.js"></script>
+    <script src="./vendor/global/global.min.js"></script>
+    <script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="./js/custom.min.js"></script>
+    <script src="./js/deznav-init.js"></script>
+
+    <!-- Svganimation scripts -->
+    <script src="./vendor/svganimation/vivus.min.js"></script>
+    <script src="./vendor/svganimation/svg.animation.js"></script>
+
+</body>
+
+</html>
