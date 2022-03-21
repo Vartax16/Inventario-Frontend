@@ -31,30 +31,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 
-<body id="page-top">
+<body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav"
         style="background-image: url(/icons/nav/nav.jpg);">
         <div class="container">
-            <a href="/index.html"><img src="/icons/icon.jpg" id="navImageLogo"></a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <a href="/view/usuarios.html"><img src="/icons/nav/usuarios.jpg" class="navImage"></a>
-                        <a href="/view/productos.html"><img src="/icons/nav/productos.jpg" class="navImage"></a>
-                        <a href="/view/categorias.html"><img src="/icons/nav/caterogias.jpg" class="navImage"></a>
-                        <a href="/view/proveedores.html"><img src="/icons/nav/proveedores.jpg" class="navImage"></a>
-                        <a href="/view/clientes.html"><img src="/icons/nav/clientes.jpg" class="navImage"></a>
-                        <a href="/view/ventas.html"><img src="/icons/nav/ventas.jpg" class="navImage"></a>
-                        <a href="/view/compras.html"><img src="/icons/nav/compras.jpg" class="navImage"></a>
-                        <a href="/view/reportes.html"><img src="/icons/nav/reportes.jpg" class="navImage"></a>
+                <a class="navbar-brand" href="/index.html"><img src="/icons/icon.jpg" id="navImageLogo"></a>
+                <ul class="navbar-nav ms-auto" style="font-size: 85%;">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/usuarios.html" style="color: #F2AA1F;">Usuarios</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/productos.html">Productos</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/categorias.html">Categorias</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/proveedores.html">Proveedores</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/clientes.html">Clientes</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/ventas.html">Ventas</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/reportes.html">Reportes</a></li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <button style="background-color: #F2AA1F; width: 405%; height: 100%; color: white; text-align: left;" class="button" onclick="cerrarSesion()"><img src="" id="fotoUser" style="width: 10%;"> <label  id="UserButton"></label></button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <header style="margin-top: 7%;"></header>
 
     <!-- Portfolio Section-->
-    <section class="page-section" style="margin-top: 5%;">
+    <section class="page-section">
         <div class="container">
 
             <div class="row page-titles mx-0">
@@ -71,22 +86,23 @@
         <div class="container">
             <!-- Tabla de Empleados -->
             <div class="col-lg-12">
-                <table id="table" class="table table-striped " style="width: 100%;border-radius: 100px;">
-                    <thead>
-                        <tr style="border-radius: 10px;">
-                            <th scope="col"></th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Usuario</th>
-                            <th scope="col">Foto</th>
-                            <th scope="col ">Perfil</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Ultimo Login</th>
-                            <th scope="col" style="height: 10%;"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table style="width: 100%;" id="table" class="table table-striped">
+                        <thead>
+                            <tr style="border-radius: 10px;">
+                                <th scope="col"></th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col ">Perfil</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Ultimo Login</th>
+                                <th scope="col" style="height: 10%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -95,72 +111,190 @@
             <div class="modal-dialog modal-m">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #F2AA1F;">
-                        <h4> Agregar Usuario </h4>
+                        <h4 id="Titulo"> Agregar Usuario </h4>
                         <a type="button" class="close" data-dismiss="modal" style="color: black;">
                             <h4><span>&times;</span></h4>
                         </a>
                     </div>
                     <div class="modal-body">
-                        <div>
-                            <!-- row -->
-                            <div class="container-fluid">
+                        <!-- row -->
+                        <div class="container-fluid">
 
-                                <div class="col-xl-12 col-xxl-6 col-lg-6">
+                            <div class="col-xl-12 col-xxl-12 col-lg-6">
 
-                                    <div class="card-body">
-                                        <div class="basic-form">
-                                            <form>
-                                                <div class="form-row">
+                                <div class="card-body">
+                                    <div class="basic-form">
+                                        <form>
+                                            <div class="form-row">
 
-                                                    <div class="form-group col-md-12">
-                                                        <label>Nombre</label>
-                                                        <input type="text" class="form-control" id="Nombre" required
-                                                            value="">
+                                                <div class="form-group col-md-12">
+                                                    <label>Nombre</label>
+                                                    <input type="text" class="form-control" id="Nombre" required
+                                                        value="">
+                                                </div>
+                                            </div><br>
+                                            <div class="form-row">
+
+                                                <div class="form-group col-md-9">
+                                                    <label>Usuario</label>
+                                                    <input type="text" class="form-control" id="Usuario" required
+                                                        value="">
+                                                </div>
+                                                <div style="margin-left: 80%; margin-top: -15%;">
+                                                    <div class="image-upload">
+                                                        <label for="file-input">
+                                                            <img src="/icons/nav/foto.jpg" style="width: 80%;"
+                                                                id="output" />
+                                                        </label>
+                                                        <input type="file" class="form-control" accept="image/*"
+                                                            onchange="loadFile(event)" id="file-input" />
+
                                                     </div>
-                                                </div><br>
-                                                <div class="form-row">
 
-                                                    <div class="form-group col-md-9">
-                                                        <label>Usuario</label>
-                                                        <input type="text" class="form-control"
-                                                            id="Usuario" required value="">
-                                                    </div>
-                                                    <div style="margin-left: 80%; margin-top: -15%;">
-                                                        <div class="image-upload">
-                                                            <label for="file-input">
-                                                                <img src="/icons/nav/foto.jpg" style="width: 80%;" id="output"/>
-                                                            </label>
-                                                            <input type="file" class="form-control" accept="image/*"
-                                                                onchange="loadFile(event)" id="file-input" />
-
-                                                        </div>
-                                                        
                                                     <div style="margin-left: 100%; margin-top: -50%;">
-                                                        <a onclick="deletePhoto()"><i class="bi bi-trash3" style="color: #F2AA1F;" ></i></a>
-                                                    </div>
+                                                        <a onclick="deletePhoto()"><i class="bi bi-trash3"
+                                                                style="color: #F2AA1F;"></i></a>
                                                     </div>
                                                 </div>
+                                            </div>
+                                    </div><br>
+
+                                    <div class="form-row">
+
+                                        <div class="form-group col-md-12">
+                                            <label>Contraseña</label>
+                                            <input type="password" class="form-control" id="Clave" required value="">
                                         </div><br>
 
-                                        <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label>Perfil</label>
+                                            <select class="form-control" id="Perfil">
+                                                <option value=""> Seleccione un Perfil
+                                                </option>
+                                                <option value="Administrador"> Administrador
+                                                </option>
+                                                <option value="Auxiliar"> Auxiliar
+                                                </option>
+                                            </select>
+                                        </div><br>
 
-                                            <div class="form-group col-md-12">
-                                                <label>Contraseña</label>
-                                                <input type="password" class="form-control" id="Clave" required
-                                                    value="">
-                                            </div><br>
 
-                                            <div class="form-group col-md-12">
-                                                <label>Perfil</label>
-                                                <input type="text" class="form-control" id="Perfil" required value="">
-                                            </div>
+                                        <div class="form-group col-md-12" id="State">
+                                            <label>Estado</label>
+                                            <select class="form-control" id="Estado">
+                                                <option value=""> Seleccione un Estado
+                                                </option>
+                                                <option value="Activo"> Activo
+                                                </option>
+                                                <option value="Inactivo"> Inactivo
+                                                </option>
+                                            </select>
                                         </div>
-                                        </form><br>
+                                    </div>
+                                    </form><br>
 
+                                    <div class="text-right pt-6">
+                                        <button type="submit" class="button" onclick="addUser()" aling="right"
+                                            style="margin-left: 60%;" id="addCate">Agregar
+                                            Usuario</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade " id="visualization" tabindex="-1" aria-labelledby="visualization">
+            <div class="modal-dialog modal-m">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #F2AA1F;">
+                        <h4> Datos del Usuario </h4>
+                        <a type="button" class="close" data-dismiss="modal" style="color: black;">
+                            <h4><span>&times;</span></h4>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <!-- row -->
+                        <div class="container-fluid">
+
+                            <div class="col-xl-12 col-xxl-12 col-lg-6">
+
+                                <div class="card-body">
+                                    <div class="basic-form">
+                                        <form>
+                                            <div class="form-row">
+
+                                                <div class="form-group col-md-12">
+                                                    <div class="image-upload">
+                                                        <label>Imagen del Usuario</label>
+                                                        <img style="width: 50%;" id="output1" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label>Nombre</label>
+                                                    <input type="text" class="form-control" id="Nombre1" required
+                                                        value="">
+                                                </div>
+                                            </div><br>
+                                            <div class="form-row">
+
+                                                <div class="form-group col-md-12">
+                                                    <label>Usuario</label>
+                                                    <input type="text" class="form-control" id="Usuario1" required
+                                                        value="">
+                                                </div>
+                                            </div>
+                                    </div><br>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label>Perfil</label>
+                                            <input type="text" class="form-control" id="Perfil1" required value="">
+                                        </div><br>
+
+
+                                        <div class="form-group col-md-12">
+                                            <label>Estado</label>
+                                            <input type="text" class="form-control" id="Estado1" required value="">
+                                        </div>
+                                    </div>
+                                    </form><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade-example-modal-dialog-centered " id="ModalDelete" tabindex="-1" aria-labelledby="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #F2AA1F;">
+                        <h4> Eliminar Usuario </h4>
+                        <a type="button" class="close" data-dismiss="modal" style="color: black;">
+                            <h4><span>&times;</span></h4>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <!-- row -->
+                        <div class="container">
+
+                            <div class="col-xl-12 col-xxl-12 col-lg-6">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label style="margin-left: 12%;">¿Seguro que quiere eliminar este
+                                                    usuario?</label>
+                                            </div>
+                                        </div><br>
                                         <div class="text-right pt-6">
-                                            <button type="submit" class="button" onclick="addUser()" aling="right"
-                                                style="margin-left: 60%;">Agregar
-                                                Usuario</button>
+                                            <button type="submit" class="button" onclick="deleteCategory()"
+                                                aling="right" style="margin-left: 35%;">Eliminar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -170,13 +304,13 @@
                 </div>
             </div>
         </div>
-        </div>
     </section>
     <!-- Bootstrap core JS-->
     <script src="/vendor/global/global.min.js"></script>
     <script src="/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-
+    <script src="/js/cerrarSesion.js"></script>
     <script src="/js/general.js"></script>
+    <script src="/js/security.js"></script>
     <script src="/js/usuarios.js"></script>
 </body>
 

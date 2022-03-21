@@ -32,26 +32,43 @@
 </head>
 
 <body id="page-top">
-    <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav"
         style="background-image: url(/icons/nav/nav.jpg);">
         <div class="container">
-            <a href="/index.html"><img src="/icons/icon.jpg" id="navImageLogo"></a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <a href="/view/usuarios.html"><img src="/icons/nav/usuarios.jpg" class="navImage"></a>
-                        <a href="/view/productos.html"><img src="/icons/nav/productos.jpg" class="navImage"></a>
-                        <a href="/view/categorias.html"><img src="/icons/nav/caterogias.jpg" class="navImage"></a>
-                        <a href="/view/proveedores.html"><img src="/icons/nav/proveedores.jpg" class="navImage"></a>
-                        <a href="/view/clientes.html"><img src="/icons/nav/clientes.jpg" class="navImage"></a>
-                        <a href="/view/ventas.html"><img src="/icons/nav/ventas.jpg" class="navImage"></a>
-                        <a href="/view/compras.html"><img src="/icons/nav/compras.jpg" class="navImage"></a>
-                        <a href="/view/reportes.html"><img src="/icons/nav/reportes.jpg" class="navImage"></a>
+                <a class="navbar-brand" href="/index.html"><img src="/icons/icon.jpg" id="navImageLogo"></a>
+                <ul class="navbar-nav ms-auto" style="font-size: 85%;">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/usuarios.html">Usuarios</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/productos.html" style="color: #F2AA1F;">Productos</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/categorias.html">Categorias</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/proveedores.html">Proveedores</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/clientes.html">Clientes</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/ventas.html">Ventas</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/view/reportes.html">Reportes</a></li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <button
+                            style="background-color: #F2AA1F; width: 405%; height: 100%; color: white; text-align: left;"
+                            class="button" onclick="cerrarSesion()"><img src="" id="fotoUser" style="width: 10%;">
+                            <label id="UserButton"></label></button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <header style="margin-top: 8%;"></header>
 
     <!-- Portfolio Section-->
     <section class="page-section" style="margin-top: 5%;">
@@ -74,7 +91,6 @@
                 <table id="table" class="table table-striped " style="width: 100%;border-radius: 100px;">
                     <thead>
                         <tr style="border-radius: 10px;">
-                            <th scope="col">Imagen</th>
                             <th scope="col">Proveedor</th>
                             <th scope="col">Código</th>
                             <th scope="col">Descripción</th>
@@ -97,7 +113,7 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #F2AA1F;">
-                        <h4> Agregar Producto </h4>
+                        <h4 id="Titulo"> Agregar Producto </h4>
                         <a type="button" class="close" data-dismiss="modal" style="color: black;">
                             <h4><span>&times;</span></h4>
                         </a>
@@ -113,7 +129,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <label>Proveedor</label>
-                                                    <select class="form-control" id="Proveedor">
+                                                    <select class="form-control" id="ProveedorID">
                                                         <option value=""> Seleccione un Proveedor
                                                         </option>
                                                     </select>
@@ -121,7 +137,7 @@
 
                                                 <div class="col">
                                                     <label>Categoría</label>
-                                                    <select class="form-control" id="Categoria">
+                                                    <select class="form-control" id="CategoriaID">
                                                         <option value=""> Seleccione una Categoría
                                                         </option>
                                                     </select>
@@ -132,7 +148,7 @@
 
                                                 <div class="col">
                                                     <label>Código</label>
-                                                    <input type="number" class="form-control" id="Codigo" required
+                                                    <input type="text" class="form-control" id="Codigo" required
                                                         value="">
                                                 </div><br>
 
@@ -155,7 +171,13 @@
                                                     <label>Precio de Venta</label>
                                                     <input type="number" class="form-control" id="PrecioVenta" required
                                                         value="">
-                                                </div>
+                                                </div><br>
+
+                                                <div class="col">
+                                                    <label>Stock</label>
+                                                    <input type="number" class="form-control" id="Stock" required
+                                                        value="">
+                                                </div><br>
                                             </div>
                                         </form><br>
 
@@ -169,12 +191,14 @@
                                                     <input type="file" class="form-control" accept="image/*"
                                                         onchange="loadFile(event)" id="file-input" />
 
+                                                    <a onclick="deletePhoto()"><i class="bi bi-trash3"
+                                                            style="color: #F2AA1F;"></i></a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="text-right pt-6">
                                             <button type="submit" class="button" onclick="addProduct()" aling="right"
-                                                style="margin-left: 60%;">Agregar Producto</button>
+                                                style="margin-left: 60%;" id="addCate">Agregar Producto</button>
                                         </div>
                                     </div>
                                 </div>
@@ -183,6 +207,42 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="modal fade-example-modal-dialog-centered " id="ModalDelete" tabindex="-1" aria-labelledby="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #F2AA1F;">
+                        <h4> Eliminar Producto </h4>
+                        <a type="button" class="close" data-dismiss="modal" style="color: black;">
+                            <h4><span>&times;</span></h4>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <!-- row -->
+                        <div class="container">
+
+                            <div class="col-xl-12 col-xxl-12 col-lg-6">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label style="margin-left: 12%;">¿Seguro que quiere eliminar este
+                                                    producto?</label>
+                                            </div>
+                                        </div><br>
+                                        <div class="text-right pt-6">
+                                            <button type="submit" class="button" onclick="deleteCategory()"
+                                                aling="right" style="margin-left: 35%;">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- Bootstrap core JS-->
     <script src="/vendor/global/global.min.js"></script>
@@ -194,7 +254,10 @@
     <script src="/vendor/svganimation/vivus.min.js"></script>
     <script src="/vendor/svganimation/svg.animation.js"></script>
 
+
+    <script src="/js/cerrarSesion.js"></script>
     <script src="/js/general.js"></script>
+    <script src="/js/security.js"></script>
     <script src="/js/productos.js"></script>
 </body>
 
